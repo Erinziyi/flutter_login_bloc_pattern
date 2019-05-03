@@ -3,13 +3,17 @@ import 'validator.dart';
 import 'package:rxdart/rxdart.dart';
 class Bloc extends Object with Validators implements BaseBloc{
 
-  final _emailController = StreamController<String>();
-  final _passwordController = StreamController<String>();
+  final _emailController = BehaviorSubject<String>();
+  final _passwordController = BehaviorSubject<String>();
 
   //ask controller
 
   Function(String)get emailChanged => _emailController.sink.add;
   Function(String)get passwordChanged => _passwordController.sink.add;
+
+  //Another way
+  // StreamSink<String> get emailChanged => _emailController.sink;
+  // StreamSink<String> get passwordChanged => _passwordController.sink;
 
 
   Stream<String> get email => _emailController.stream.transform(emailValidator);
@@ -20,6 +24,7 @@ class Bloc extends Object with Validators implements BaseBloc{
   Stream<bool> get sumbitCheck => Observable.combineLatest2(email, password, (e,p)=> true);
 
   submit(){
+    print("xyx");
 
   }
 

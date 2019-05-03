@@ -11,29 +11,20 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Bloc Pattern',
+      home: HomePage(),
       theme: ThemeData(
 
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.teal,
       ),
-      debugShowCheckedModeBanner: true,
-      home: MyHomePage(title: 'Bloc Pattern'),
+      debugShowCheckedModeBanner: false,
+
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
 
 
-
-  final String title;
-
-  @override
-  _MyHomePageState createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
+class HomePage extends StatelessWidget {
  changeThePage(BuildContext context){
    Navigator.of(context).push(MaterialPageRoute(builder: (context)=>PageTwo()));
  }
@@ -45,7 +36,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       appBar: AppBar(
 
-        title: Text("Bloc Psttern"),
+        title: Text("Bloc Pattern"),
       ),
       body: SingleChildScrollView(
         child: Container(
@@ -99,7 +90,9 @@ class _MyHomePageState extends State<MyHomePage> {
                stream: bloc.sumbitCheck,
                builder :(context,snapshot)=>RaisedButton(
                 color: Colors.tealAccent,
-                onPressed: snapshot.hasData?() => changeThePage(context):null,
+                onPressed: snapshot.hasData
+                    ?() => changeThePage(context)
+                    :null,
                 child: Text("Summit"),
                ),
               ),
