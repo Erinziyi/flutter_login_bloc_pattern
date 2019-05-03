@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_login_bloc_pattern/bloc.dart';
+import 'package:flutter_login_bloc_pattern/pagetwo.dart';
 
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
+
+
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -31,7 +34,9 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
+ changeThePage(BuildContext context){
+   Navigator.of(context).push(MaterialPageRoute(builder: (context)=>PageTwo()));
+ }
 
   @override
   Widget build(BuildContext context) {
@@ -60,6 +65,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   border: OutlineInputBorder(),
                   hintText:"Enter email",
                   labelText: "Email",
+                  errorText: snapshot.error  //if error
                   ),
                 ),
               ),
@@ -79,6 +85,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   border: OutlineInputBorder(),
                   hintText: "Enter password",
                   labelText: "Password",
+                    errorText: snapshot.error //if error
                 ),
               ),
               ),
